@@ -31,15 +31,18 @@ namespace Lab1_CSharp
                 listBox.Items.Add($"Главный поток");
                 listBox.SelectedIndex = 0;
             }
-            int N = (int)numericUpDown.Value;
-            int j = listBox.Items.Count;
-            for (int i = 0; i < N; i++)
+            else
             {
-                startEvent.Set();
-                confirmEvent.WaitOne();
-                listBox.Items.Add($"Thread {j + i - 1}");
+                int N = (int)numericUpDown.Value;
+                int j = listBox.Items.Count;
+                for (int i = 0; i < N; i++)
+                {
+                    startEvent.Set();
+                    confirmEvent.WaitOne();
+                    listBox.Items.Add($"Thread {j + i - 2}");
+                }
+                listBox.SelectedIndex = listBox.Items.Count - 1;
             }
-            listBox.SelectedIndex = listBox.Items.Count - 1;
         }
 
         private void buttonStop_Click(object sender, EventArgs e)
