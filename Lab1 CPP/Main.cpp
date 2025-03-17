@@ -1,11 +1,10 @@
-#include "Session.h"
+﻿#include <locale.h>
+#include "session.h"
+#include "mydll.h"
 
-HANDLE hEvent;
-
-DWORD WINAPI MyThread(LPVOID lpParameter)
+void MyThread(Session* session)
 {
-	auto session = static_cast<Session*>(lpParameter);
-	SafeWrite("session", session->sessionID, "created");
+	SafeWrite(L"сессия ", session->sessionID, L" создана");
 	while (true)
 	{
 		Message m;
@@ -15,64 +14,118 @@ DWORD WINAPI MyThread(LPVOID lpParameter)
 			{
 			case MT_CLOSE:
 			{
-				SafeWrite("session", session->sessionID, "closed");
+				SafeWrite(L"сессия ", session->sessionID, L" закрыта");
 				delete session;
-				return 0;
+				return;
 			}
-			/*case MT_DATA:
+			case MT_DATA:
 			{
-				SafeWrite("session", session->sessionID, "data", m.data);
-				Sleep(500 * session->sessionID);
+				session->saveMessage(m);
 				break;
-			}*/
+			}
 			}
 		}
 	}
-	return 0;
+	return;
 }
 
 void start()
 {
-	InitializeCriticalSection(&cs);
-
-	vector<Session*> sessions;
+	int i = 0;
+	std::vector<Session*> sessions;
 
 	HANDLE hStartEvent = CreateEvent(NULL, FALSE, FALSE, L"StartEvent");
-	HANDLE hStopEvent = CreateEvent(NULL, TRUE, FALSE, L"StopEvent");
+	HANDLE hDataEvent = CreateEvent(NULL, FALSE, FALSE, L"DataEvent");
+	HANDLE hStopEvent = CreateEvent(NULL, FALSE, FALSE, L"StopEvent");
 	HANDLE hConfirmEvent = CreateEvent(NULL, FALSE, FALSE, L"ConfirmEvent");
 	HANDLE hExitEvent = CreateEvent(NULL, FALSE, FALSE, L"ExitEvent");
-	HANDLE hControlEvents[3] = { hStartEvent, hStopEvent, hExitEvent };
 
-	int i = 0;
+	HANDLE hControlEvents[4] = { hStartEvent, hDataEvent, hStopEvent, hExitEvent };
+
 	SetEvent(hConfirmEvent);
-
-	do
+	while (i >= 0)
 	{
-		int n = WaitForMultipleObjects(3, hControlEvents, FALSE, INFINITE) - WAIT_OBJECT_0;
+		int n = WaitForMultipleObjects(4, hControlEvents, FALSE, INFINITE) - WAIT_OBJECT_0;
 		switch (n)
 		{
 		case 0:
+		{
 			sessions.push_back(new Session(i++));
-			CloseHandle(CreateThread(NULL, 0, MyThread, (LPVOID)sessions.back(), 0, NULL));
+			std::thread t(MyThread, sessions.back());
+			t.detach();
 			SetEvent(hConfirmEvent);
 			break;
+		}
 		case 1:
+		{
+			header h;
+			std::wstring str = MapReceiveMessage(h);
+
+			switch (h.addr)
+			{
+			case -2:
+			{
+				SafeWrite(L"Главный поток, сообщение \"", str, L"\"");
+				for (const auto& session : sessions)
+				{
+					session->addMessage(MT_DATA, str);
+				}
+				break;
+			}
+			case -1:
+			{
+				SafeWrite(L"Главный поток, сообщение \"", str, L"\"");
+				break;
+			}
+			default:
+			{
+				if (h.addr < sessions.size())
+				{
+					sessions[h.addr]->addMessage(MT_DATA, str);
+				}
+			}
+			};
+
+			SetEvent(hConfirmEvent);
+			break;
+		}
+		case 2:
+		{
+			if (i == 0)
+			{
+				SetEvent(hExitEvent);
+				break;
+			}
 			sessions.back()->addMessage(MT_CLOSE);
 			sessions.pop_back();
 			--i;
 			SetEvent(hConfirmEvent);
 			break;
-		case 2:
+		}
+		case 3:
+		{
+			for (auto session : sessions)
+				delete session;
 			SetEvent(hConfirmEvent);
 			return;
 		}
-	} while (i);
+		}
+	};
+
 	SetEvent(hConfirmEvent);
-	DeleteCriticalSection(&cs);
 }
 
 int main()
 {
+#ifdef _WIN32
+	std::wcin.imbue(std::locale("rus_rus.866"));
+	std::wcout.imbue(std::locale("rus_rus.866"));
+#else
+	std::wcin.imbue(std::locale("ru_RU.UTF-8"));
+	std::wcout.imbue(std::locale("ru_RU.UTF-8"));
+#endif
+
 	start();
+
 	return 0;
 }

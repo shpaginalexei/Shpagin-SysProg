@@ -42,24 +42,27 @@
             listBox.Dock = DockStyle.Left;
             listBox.FormattingEnabled = true;
             listBox.Location = new Point(0, 0);
+            listBox.Margin = new Padding(6, 6, 6, 6);
             listBox.Name = "listBox";
-            listBox.Size = new Size(187, 433);
+            listBox.Size = new Size(347, 801);
             listBox.TabIndex = 0;
             // 
             // numericUpDown
             // 
-            numericUpDown.Location = new Point(193, 12);
+            numericUpDown.Location = new Point(362, 22);
+            numericUpDown.Margin = new Padding(6, 6, 6, 6);
             numericUpDown.Name = "numericUpDown";
-            numericUpDown.Size = new Size(58, 27);
+            numericUpDown.Size = new Size(108, 43);
             numericUpDown.TabIndex = 1;
             numericUpDown.TextAlign = HorizontalAlignment.Right;
             numericUpDown.Value = new decimal(new int[] { 2, 0, 0, 0 });
             // 
             // buttonStart
             // 
-            buttonStart.Location = new Point(193, 45);
+            buttonStart.Location = new Point(362, 83);
+            buttonStart.Margin = new Padding(6, 6, 6, 6);
             buttonStart.Name = "buttonStart";
-            buttonStart.Size = new Size(94, 29);
+            buttonStart.Size = new Size(177, 53);
             buttonStart.TabIndex = 2;
             buttonStart.Text = "Start";
             buttonStart.UseVisualStyleBackColor = true;
@@ -67,9 +70,10 @@
             // 
             // buttonStop
             // 
-            buttonStop.Location = new Point(293, 45);
+            buttonStop.Location = new Point(549, 83);
+            buttonStop.Margin = new Padding(6, 6, 6, 6);
             buttonStop.Name = "buttonStop";
-            buttonStop.Size = new Size(94, 29);
+            buttonStop.Size = new Size(177, 53);
             buttonStop.TabIndex = 3;
             buttonStop.Text = "Stop";
             buttonStop.UseVisualStyleBackColor = true;
@@ -78,34 +82,39 @@
             // textBox
             // 
             textBox.Enabled = false;
-            textBox.Location = new Point(262, 12);
+            textBox.Location = new Point(492, 22);
+            textBox.Margin = new Padding(6, 6, 6, 6);
             textBox.Name = "textBox";
-            textBox.Size = new Size(225, 27);
+            textBox.Size = new Size(418, 43);
             textBox.TabIndex = 4;
             // 
             // buttonSend
             // 
-            buttonSend.Location = new Point(393, 45);
+            buttonSend.Enabled = false;
+            buttonSend.Location = new Point(737, 83);
+            buttonSend.Margin = new Padding(6, 6, 6, 6);
             buttonSend.Name = "buttonSend";
-            buttonSend.Size = new Size(94, 29);
+            buttonSend.Size = new Size(177, 53);
             buttonSend.TabIndex = 5;
             buttonSend.Text = "Send";
             buttonSend.UseVisualStyleBackColor = true;
+            buttonSend.Click += buttonSend_Click;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(15F, 37F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(622, 433);
+            ClientSize = new Size(1167, 801);
             Controls.Add(buttonSend);
             Controls.Add(textBox);
             Controls.Add(buttonStop);
             Controls.Add(buttonStart);
             Controls.Add(numericUpDown);
             Controls.Add(listBox);
-            MinimumSize = new Size(640, 480);
+            Margin = new Padding(6, 6, 6, 6);
+            MinimumSize = new Size(1177, 826);
             Name = "Form1";
-            Text = "Шпагин А.Ю. АС-22-05 ЛР1";
+            Text = "Шпагин А.Ю. АС-22-05 ЛР2";
             FormClosed += Form1_FormClosed;
             ((System.ComponentModel.ISupportInitialize)numericUpDown).EndInit();
             ResumeLayout(false);
