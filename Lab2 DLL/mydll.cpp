@@ -1,4 +1,5 @@
 ﻿#include "pch.h"
+#include <string>
 #include "mydll.h"
 
 HANDLE hMapMutex = CreateMutex(NULL, FALSE, L"MapMutex");

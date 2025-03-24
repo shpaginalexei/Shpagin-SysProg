@@ -6,15 +6,6 @@ namespace Lab1_CSharp
 {
     public partial class Form1 : Form
     {
-        [StructLayout(LayoutKind.Sequential)]
-        struct Header
-        {
-            [MarshalAs(UnmanagedType.I4)]
-            int addr;
-            [MarshalAs(UnmanagedType.I4)]
-            int size;
-        }
-
         [DllImport("Lab2 DLL.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
         private static extern void MapSendMessage(int addr, string str);
 
