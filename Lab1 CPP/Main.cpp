@@ -117,13 +117,9 @@ void start()
 
 int main()
 {
-#ifdef _WIN32
-	std::wcin.imbue(std::locale("rus_rus.866"));
-	std::wcout.imbue(std::locale("rus_rus.866"));
-#else
-	std::wcin.imbue(std::locale("ru_RU.UTF-8"));
-	std::wcout.imbue(std::locale("ru_RU.UTF-8"));
-#endif
+	std::locale::global(std::locale("rus_rus.866"));
+	std::wcin.imbue(std::locale());
+	std::wcout.imbue(std::locale());
 
 	start();
 

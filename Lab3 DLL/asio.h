@@ -1,0 +1,33 @@
+#pragma once
+
+#ifndef _WIN32_WINNT
+#define	_WIN32_WINNT	0x0A00
+#endif						
+
+#include <string>
+#include <boost/asio.hpp>
+
+using boost::asio::ip::tcp;
+
+template <class T>
+inline void sendData(tcp::socket& s, T* data, std::size_t n = 0)
+{
+	if (!n)
+		n = sizeof(T);
+	boost::system::error_code error;
+	boost::asio::write(s, boost::asio::buffer(data, n), error);
+	if (error)
+		throw boost::system::system_error(error);
+}
+
+template <class T>
+inline void receiveData(tcp::socket& s, T* data, std::size_t n = 0)
+{
+	if (!n)
+		n = sizeof(T);
+	boost::system::error_code error;
+	boost::asio::read(s, boost::asio::buffer(data, n), error);
+	if (error)
+		throw boost::system::system_error(error);
+}
+
