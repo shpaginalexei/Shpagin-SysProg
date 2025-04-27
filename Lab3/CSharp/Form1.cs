@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Lab3_CSharp
+namespace CSharp
 {
     enum MessageType
     {
@@ -14,7 +14,7 @@ namespace Lab3_CSharp
 
     public partial class Form1 : Form
     {
-        [DllImport("Lab3 DLL.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+        [DllImport("DLL.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
         static extern int SendM_C(int type, int num = 0, int addr = 0, string str = "");
 
 

@@ -2,11 +2,11 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Lab1_CSharp
+namespace CSharp
 {
     public partial class Form1 : Form
     {
-        [DllImport("Lab2 DLL.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+        [DllImport("DLL.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
         private static extern void MapSendMessage(int addr, string str);
 
         Process? childProcess = null;
@@ -42,7 +42,7 @@ namespace Lab1_CSharp
         {
             if (childProcess == null || childProcess.HasExited)
             {
-                childProcess = Process.Start("Lab1 CPP.exe");
+                childProcess = Process.Start("CPP.exe");
                 childProcess.EnableRaisingEvents = true;
                 childProcess.Exited += OnProcessExited;
                 confirmEvent.WaitOne();

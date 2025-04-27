@@ -1,4 +1,4 @@
-﻿namespace Lab3_CSharp
+﻿namespace CSharp
 {
     partial class Form1
     {
@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             listBox = new ListBox();
-            buttonSend = new Button();
-            textBox = new TextBox();
-            buttonStop = new Button();
-            buttonStart = new Button();
             numericUpDown = new NumericUpDown();
+            buttonStart = new Button();
+            buttonStop = new Button();
+            textBox = new TextBox();
+            buttonSend = new Button();
             ((System.ComponentModel.ISupportInitialize)numericUpDown).BeginInit();
             SuspendLayout();
             // 
@@ -42,61 +42,63 @@
             listBox.Dock = DockStyle.Left;
             listBox.FormattingEnabled = true;
             listBox.Location = new Point(0, 0);
-            listBox.MinimumSize = new Size(350, 0);
+            listBox.Margin = new Padding(6, 6, 6, 6);
             listBox.Name = "listBox";
-            listBox.Size = new Size(350, 801);
+            listBox.Size = new Size(347, 801);
             listBox.TabIndex = 0;
             // 
-            // buttonSend
+            // numericUpDown
             // 
-            buttonSend.Location = new Point(751, 76);
-            buttonSend.Margin = new Padding(6);
-            buttonSend.Name = "buttonSend";
-            buttonSend.Size = new Size(177, 53);
-            buttonSend.TabIndex = 10;
-            buttonSend.Text = "Send";
-            buttonSend.UseVisualStyleBackColor = true;
-            buttonSend.Click += buttonSend_Click;
-            // 
-            // textBox
-            // 
-            textBox.Location = new Point(503, 15);
-            textBox.Margin = new Padding(6);
-            textBox.Name = "textBox";
-            textBox.Size = new Size(425, 43);
-            textBox.TabIndex = 9;
-            // 
-            // buttonStop
-            // 
-            buttonStop.Location = new Point(562, 76);
-            buttonStop.Margin = new Padding(6);
-            buttonStop.Name = "buttonStop";
-            buttonStop.Size = new Size(177, 53);
-            buttonStop.TabIndex = 8;
-            buttonStop.Text = "Stop";
-            buttonStop.UseVisualStyleBackColor = true;
-            buttonStop.Click += buttonStop_Click;
+            numericUpDown.Location = new Point(362, 22);
+            numericUpDown.Margin = new Padding(6, 6, 6, 6);
+            numericUpDown.Name = "numericUpDown";
+            numericUpDown.Size = new Size(108, 43);
+            numericUpDown.TabIndex = 1;
+            numericUpDown.TextAlign = HorizontalAlignment.Right;
+            numericUpDown.Value = new decimal(new int[] { 2, 0, 0, 0 });
             // 
             // buttonStart
             // 
-            buttonStart.Location = new Point(373, 76);
-            buttonStart.Margin = new Padding(6);
+            buttonStart.Location = new Point(362, 83);
+            buttonStart.Margin = new Padding(6, 6, 6, 6);
             buttonStart.Name = "buttonStart";
             buttonStart.Size = new Size(177, 53);
-            buttonStart.TabIndex = 7;
+            buttonStart.TabIndex = 2;
             buttonStart.Text = "Start";
             buttonStart.UseVisualStyleBackColor = true;
             buttonStart.Click += buttonStart_Click;
             // 
-            // numericUpDown
+            // buttonStop
             // 
-            numericUpDown.Location = new Point(373, 15);
-            numericUpDown.Margin = new Padding(6);
-            numericUpDown.Name = "numericUpDown";
-            numericUpDown.Size = new Size(108, 43);
-            numericUpDown.TabIndex = 6;
-            numericUpDown.TextAlign = HorizontalAlignment.Right;
-            numericUpDown.Value = new decimal(new int[] { 2, 0, 0, 0 });
+            buttonStop.Location = new Point(549, 83);
+            buttonStop.Margin = new Padding(6, 6, 6, 6);
+            buttonStop.Name = "buttonStop";
+            buttonStop.Size = new Size(177, 53);
+            buttonStop.TabIndex = 3;
+            buttonStop.Text = "Stop";
+            buttonStop.UseVisualStyleBackColor = true;
+            buttonStop.Click += buttonStop_Click;
+            // 
+            // textBox
+            // 
+            textBox.Enabled = false;
+            textBox.Location = new Point(492, 22);
+            textBox.Margin = new Padding(6, 6, 6, 6);
+            textBox.Name = "textBox";
+            textBox.Size = new Size(418, 43);
+            textBox.TabIndex = 4;
+            // 
+            // buttonSend
+            // 
+            buttonSend.Enabled = false;
+            buttonSend.Location = new Point(737, 83);
+            buttonSend.Margin = new Padding(6, 6, 6, 6);
+            buttonSend.Name = "buttonSend";
+            buttonSend.Size = new Size(177, 53);
+            buttonSend.TabIndex = 5;
+            buttonSend.Text = "Send";
+            buttonSend.UseVisualStyleBackColor = true;
+            buttonSend.Click += buttonSend_Click;
             // 
             // Form1
             // 
@@ -109,8 +111,10 @@
             Controls.Add(buttonStart);
             Controls.Add(numericUpDown);
             Controls.Add(listBox);
+            Margin = new Padding(6, 6, 6, 6);
+            MinimumSize = new Size(1177, 826);
             Name = "Form1";
-            Text = "Шпагин А.Ю. АС-22-05 ЛР3";
+            Text = "Шпагин А.Ю. АС-22-05 ЛР2";
             FormClosed += Form1_FormClosed;
             ((System.ComponentModel.ISupportInitialize)numericUpDown).EndInit();
             ResumeLayout(false);
@@ -120,10 +124,10 @@
         #endregion
 
         private ListBox listBox;
-        private Button buttonSend;
-        private TextBox textBox;
-        private Button buttonStop;
-        private Button buttonStart;
         private NumericUpDown numericUpDown;
+        private Button buttonStart;
+        private Button buttonStop;
+        private TextBox textBox;
+        private Button buttonSend;
     }
 }

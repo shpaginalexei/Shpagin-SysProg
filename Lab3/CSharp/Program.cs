@@ -1,4 +1,4 @@
-namespace Lab1_CSharp
+namespace CSharp
 {
     internal static class Program
     {

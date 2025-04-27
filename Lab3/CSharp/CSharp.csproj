@@ -3,13 +3,13 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net9.0-windows</TargetFramework>
-    <RootNamespace>Lab3_CSharp</RootNamespace>
+    <RootNamespace>CSharp</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
 	<BaseOutputPath>..\x64</BaseOutputPath>
 	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <PlatformTarget>x64</PlatformTarget>
+	<PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
 </Project>
