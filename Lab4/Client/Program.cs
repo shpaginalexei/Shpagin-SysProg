@@ -1,4 +1,4 @@
-namespace Lab3_CSharp
+namespace Client
 {
     internal static class Program
     {

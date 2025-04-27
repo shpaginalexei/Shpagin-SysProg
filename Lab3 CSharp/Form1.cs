@@ -12,27 +12,10 @@ namespace Lab3_CSharp
         CONFIRM,
     };
 
-    [StructLayout(LayoutKind.Sequential)]
-    struct Header
-    {
-        [MarshalAs(UnmanagedType.I4)]
-        public int type;
-        [MarshalAs(UnmanagedType.I4)]
-        public int num;
-        [MarshalAs(UnmanagedType.I4)]
-        public int addr;
-        [MarshalAs(UnmanagedType.I4)]
-        public int size;
-    }
-
     public partial class Form1 : Form
     {
         [DllImport("Lab3 DLL.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
         static extern int SendM_C(int type, int num = 0, int addr = 0, string str = "");
-
-
-        [DllImport("Lab3 DLL.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-        static extern void ReceiveM_C([Out] Header h);
 
 
         public Form1()
@@ -132,7 +115,7 @@ namespace Lab3_CSharp
             {
                 SendM_C((int)MessageType.EXIT);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
