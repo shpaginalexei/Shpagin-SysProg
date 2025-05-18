@@ -94,7 +94,7 @@ namespace CSharp
                     listBox.SelectedIndex = listBox.Items.Count - 1;
                 }
             }
-            }
+        }
 
         private void buttonSend_Click(object sender, EventArgs e)
         {

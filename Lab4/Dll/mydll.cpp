@@ -2,7 +2,7 @@
 #include "mydll.h"
 
 boost::asio::io_context io;
-tcp::socket* MySocket = nullptr; // shared_ptr ???
+tcp::socket* MySocket = nullptr;
 
 // Конвертация std::wstring в wchar_t* (с выделением памяти)
 wchar_t* copy_wstring(const std::wstring& str)
